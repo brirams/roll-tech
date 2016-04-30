@@ -7,7 +7,7 @@ type Alumn struct {
 	Occupation string  `json:"occupation"`
 	Phone      string  `json:"phone"`
 	Email      string  `json:"email"`
-	State      string  `json:"state"`
+	Location   string  `json:"location"`
 	Hobbies    string  `json:"hobbies"`
 	Talents    string  `json:"talents"`
 	Interests  string  `json:"interests"`
