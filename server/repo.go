@@ -1,6 +1,31 @@
 package main
 
-import "fmt"
+import (
+	"database/sql"
+	"fmt"
+
+	_ "github.com/go-sql-driver/mysql"
+)
+
+type Db struct {
+	*sql.DB
+}
+
+func NewDb(driverName string, creds string) (Db, error) {
+	db, err := sql.Open(driverName, creds)
+	return Db{db}, err
+}
+
+func (d Db) GetAlumn(id int) (a Alumn, err error) {
+	var query = "SELECT a_id, name, year, occupation, phone, email, location, hobbies, talents, interests FROM alumni WHERE a_id = ?;"
+
+	err = d.QueryRow(query, id).Scan(&a.Id, &a.Name, &a.Year, &a.Occupation, &a.Phone, &a.Email, &a.Location, &a.Hobbies, &a.Talents, &a.Interests)
+	if err != nil {
+		return
+	}
+	return
+}
+
 
 var currentId int
 

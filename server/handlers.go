@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"database/sql"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -23,30 +24,39 @@ func AlumniIndex(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func AlumnShow(w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	var alumnId int
-	var err error
+func AlumnShow(repo AlumniRepo) func(w http.ResponseWriter, r *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		vars := mux.Vars(r)
+		var alumnId int
+		var alumn Alumn
+		var err error
 
-	if alumnId, err = strconv.Atoi(vars["alumnId"]); err != nil {
-		panic(err)
-	}
-
-	alumn := RepoFindAlumn(alumnId)
-	if alumn.Id > 0 {
-		w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-		w.WriteHeader(http.StatusOK)
-		if err := json.NewEncoder(w).Encode(alumn); err != nil {
+		if alumnId, err = strconv.Atoi(vars["alumnId"]); err != nil {
 			panic(err)
 		}
-		return
-	}
 
-	// If we didn't find it, 404
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusNotFound)
-	if err := json.NewEncoder(w).Encode(jsonErr{Code: http.StatusNotFound, Text: "Not Found"}); err != nil {
-		panic(err)
+		alumn, err = repo.GetAlumn(alumnId)
+
+		if err != nil {
+			if err == sql.ErrNoRows {
+				// If we didn't find it, 404
+				w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+				w.WriteHeader(http.StatusNotFound)
+				if err := json.NewEncoder(w).Encode(jsonErr{Code: http.StatusNotFound, Text: "Not Found"}); err != nil {
+					panic(err)
+				}
+				return
+			} else {
+				panic(err)
+			}
+		} else {
+			w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+			w.WriteHeader(http.StatusOK)
+			if err := json.NewEncoder(w).Encode(alumn); err != nil {
+				panic(err)
+			}
+			return
+		}
 	}
 }
 
