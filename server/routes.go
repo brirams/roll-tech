@@ -30,4 +30,10 @@ var routes = Routes{
 		"/alumni/{alumnId}",
 		AlumnShow,
 	},
+	Route{
+		"AlumnCreate",
+		"POST",
+		"/alumni",
+		AlumnCreate,
+	},
 }

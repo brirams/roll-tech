@@ -1,8 +1,9 @@
 package main
 
 type Alumn struct {
+	Id         int     `json:"id"`
 	Name       string  `json:"name"`
-	Year       int     `json:"completed"`
+	Year       int     `json:"year"`
 	Occupation string  `json:"occupation"`
 	Phone      string  `json:"phone"`
 	Email      string  `json:"email"`
