@@ -11,29 +11,33 @@ type Route struct {
 
 type Routes []Route
 
-var routes = Routes{
-	Route{
-		"Index",
-		"GET",
-		"/",
-		Index,
-	},
-	Route{
-		"AlumniIndex",
-		"GET",
-		"/alumni",
-		AlumniIndex,
-	},
-	Route{
-		"AlumnShow",
-		"GET",
-		"/alumni/{alumnId}",
-		AlumnShow,
-	},
-	Route{
-		"AlumnCreate",
-		"POST",
-		"/alumni",
-		AlumnCreate,
-	},
+func InitRoutes(repo AlumniRepo) Routes {
+	return Routes{
+		Route{
+			"Index",
+			"GET",
+			"/",
+			Index,
+		},
+		Route{
+			"AlumniIndex",
+			"GET",
+			"/alumni",
+			AlumniIndex,
+		},
+		Route{
+			"AlumnShow",
+			"GET",
+			"/alumni/{alumnId}",
+			AlumnShow(repo),
+		},
+		Route{
+			"AlumnCreate",
+			"POST",
+			"/alumni",
+			AlumnCreate(repo),
+		},
+	}
+
 }
+
