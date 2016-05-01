@@ -4,10 +4,10 @@ runtime: go
 api_version: go1
 
 beta_settings:
-      cloud_sql_instances: roll-tech:us-central1:roll-tech-db
+      cloud_sql_instances: $INSTANCE_NAME_FROM_CLOUD_SQL
 
 env_variables:
-      CLOUDSQL_CONNECTION: cloudsql:roll-tech:us-central1:roll-tech-db*roll_tech_db/root/password
+      CLOUDSQL_CONNECTION: cloudsql:$INSTANCE_NAME_FROM_CLOUD_SQL*$DBNAME/$DBUSER/$DBPASSWORD
 
 handlers:
 - url: /.*
