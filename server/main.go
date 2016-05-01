@@ -4,10 +4,14 @@ import (
 	"log"
 	"net/http"
 	"os"
+
+	_ "google.golang.org/appengine/cloudsql"
 )
 
 func main() {
-	db, err := NewDb("mysql", "username:password@tcp(127.0.0.1:3306)/your_db")
+	connectionString := os.Getenv("MYSQL_CONNECTION")
+
+	db, err := NewDb("mymysql", connectionString)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -19,11 +23,10 @@ func main() {
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
 
-
 // This is what google app engine uses. should DRY this up
 func init() {
-	datastoreName := os.Getenv("MYSQL_CONNECTION")
-	db, err := NewDb("mysql", datastoreName)
+	connectionString := os.Getenv("CLOUDSQL_CONNECTION")
+	db, err := NewDb("mymysql", connectionString)
 
 	if err != nil {
 		log.Fatal(err)

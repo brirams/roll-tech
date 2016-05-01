@@ -7,7 +7,7 @@ beta_settings:
       cloud_sql_instances: roll-tech:us-central1:roll-tech-db
 
 env_variables:
-  MYSQL_CONNECTION: root@cloudsql(project-id:roll-tech-db)/roll_tech_db
+      CLOUDSQL_CONNECTION: cloudsql:roll-tech:us-central1:roll-tech-db*roll_tech_db/root/password
 
 handlers:
 - url: /.*

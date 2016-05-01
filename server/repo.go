@@ -4,7 +4,8 @@ import (
 	"database/sql"
 	"fmt"
 
-	_ "github.com/go-sql-driver/mysql"
+	_ "github.com/ziutek/mymysql/godrv"
+	_ "google.golang.org/appengine/cloudsql"
 )
 
 type Db struct {
