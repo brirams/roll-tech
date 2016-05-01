@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
 )
 
 func main() {
@@ -21,7 +22,8 @@ func main() {
 
 // This is what google app engine uses. should DRY this up
 func init() {
-	db, err := NewDb("mysql", "username:password@tcp(127.0.0.1:3306)/your_db")
+	datastoreName := os.Getenv("MYSQL_CONNECTION")
+	db, err := NewDb("mysql", datastoreName)
 
 	if err != nil {
 		log.Fatal(err)
