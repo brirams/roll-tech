@@ -2,7 +2,7 @@ $(function () {
     $('#contact-form').validator();
     $('#contact-form').on('submit', function (e) {
         if (!e.isDefaultPrevented()) {
-	    var url = "http://roll-tech.appspot.com/alumni"
+	    var url = "http://localhost:8080/alumni"
 
 	    var data = {};
 	    $.each(this.elements, function(i, v){
