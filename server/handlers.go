@@ -89,6 +89,8 @@ func AlumnCreate(repo AlumniRepo) func(w http.ResponseWriter, r *http.Request) {
 		}
 
 		w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+		// cuz i'm a tug like that
+		w.Header().Set("Access-Control-Allow-Origin", "*")
 		w.WriteHeader(http.StatusCreated)
 		if err := json.NewEncoder(w).Encode(inserted); err != nil {
 			panic(err)
