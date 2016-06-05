@@ -2,6 +2,8 @@ $(function () {
     $('#contact-form').validator();
     $('#contact-form').on('submit', function (e) {
         if (!e.isDefaultPrevented()) {
+            // TODO: Make this configurable upon deploy. This works when running locally
+            // but we want to substitute in the public api endpoint when hosted.
 	    var url = "http://localhost:8080/alumni"
 
 	    var data = {};
