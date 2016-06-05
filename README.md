@@ -21,6 +21,12 @@ Can hardly pass for an app but it's a simple static html page that uses some mix
 custom css, and jquery to hit the above api to save data. It's severely lacking in robustness but
 think it's a good place to start from.
 
-## Running the thing
+### Running the thing
 Navigate to `app/index.html` and things should just load. You can mess around and input some data that'll
 hit the aforementioned api.
+
+
+## TODO
+- document the thing
+- add authentication to get requests -- we shouldn't expose this data to the public
+- bootstrap scripts to setup `GOPATH` and what-not
