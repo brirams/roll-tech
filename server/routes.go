@@ -11,6 +11,7 @@ type Route struct {
 
 type Routes []Route
 
+// Routes that we can handle
 func InitRoutes(repo AlumniRepo) Routes {
 	return Routes{
 		Route{
@@ -40,4 +41,3 @@ func InitRoutes(repo AlumniRepo) Routes {
 	}
 
 }
-

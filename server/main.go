@@ -32,10 +32,6 @@ func init() {
 		log.Fatal(err)
 	}
 
-	// running in google app engine complains that the db gets closed
-	// by the time we get requests. removing that here but that can't be
-	// right...
-
 	router := NewRouter(db)
 
 	http.Handle("/", router)

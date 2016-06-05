@@ -16,10 +16,12 @@ func Index(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "Welcome!\n")
 }
 
+var emptyAlumni Alumni
+
 func AlumniIndex(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
-	if err := json.NewEncoder(w).Encode(alumni); err != nil {
+	if err := json.NewEncoder(w).Encode(emptyAlumni); err != nil {
 		panic(err)
 	}
 }
@@ -89,7 +91,7 @@ func AlumnCreate(repo AlumniRepo) func(w http.ResponseWriter, r *http.Request) {
 		}
 
 		w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-		// cuz i'm a tug like that
+		// cuz i'm a thug like that
 		w.Header().Set("Access-Control-Allow-Origin", "*")
 		w.WriteHeader(http.StatusCreated)
 		if err := json.NewEncoder(w).Encode(inserted); err != nil {
