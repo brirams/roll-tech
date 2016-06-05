@@ -1,14 +1,1 @@
-application: roll-tech
-version: 1
-runtime: go
-api_version: go1
-
-beta_settings:
-      cloud_sql_instances: $INSTANCE_NAME_FROM_CLOUD_SQL
-
-env_variables:
-      CLOUDSQL_CONNECTION: cloudsql:$INSTANCE_NAME_FROM_CLOUD_SQL*$DBNAME/$DBUSER/$DBPASSWORD
-
-handlers:
-- url: /.*
-  script: _go_app
+../../app.yaml
