@@ -1,6 +1,3 @@
-body {
-    font-family: 'Lato', sans-serif;
-}
 h1{
     margin-bottom: 40px;
     text-align: center;
@@ -15,7 +12,20 @@ label {
     margin-bottom: 20px;
 }
 
+.btn-success {
+    background-color: rgba(40, 128, 218, 0.97);
+    border-color: rgba(40, 128, 218, 0.97);
+}
+
 .submit-div {
     text-align: center;
 }
 
+.jumbotron {
+    position: relative;
+    background: #000 url("../img/the-field2.jpg") center center;
+    width: 100%;
+    height: 50%;
+    background-size: cover;
+    overflow: hidden;
+}
