@@ -20,18 +20,6 @@ func InitRoutes(repo AlumniRepo) Routes {
 			Index,
 		},
 		Route{
-			"AlumniIndex",
-			"GET",
-			"/alumni",
-			AlumniIndex,
-		},
-		Route{
-			"AlumnShow",
-			"GET",
-			"/alumni/{alumnId}",
-			AlumnShow(repo),
-		},
-		Route{
 			"AlumnCreate",
 			"POST",
 			"/alumni",
